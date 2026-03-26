@@ -348,7 +348,7 @@ function update(){
     <div class="result"><strong>Kurz:</strong> Dezentral braucht ${fmt(Math.round(stromA-stromB))} kWh/a weniger Strom als Zentral, weil der Kältekreis effizienter ist. Das spart über ${p.years} Jahre ca. ${fmtE(Math.round(lastR.cumA-lastR.cumB))}.</div>`;
 
   // WARTUNG
-  const wMA=p.years*700, wMB=p.years*750;
+  const wMA=p.years*700, wMB=p.years*600;
   const wFGA=p.years*200, wLGA=Math.floor(p.years/3)*450;
   const rA=p.years*500+0.25*800, rB=p.years*550+0.25*50;
   const wTA=wMA+wFGA+wLGA+rA, wTB=wMB+rB;
@@ -356,6 +356,7 @@ function update(){
 
   let wt=`<thead><tr><th>Position (${p.years} Jahre)</th><th class="a right">Zentral</th><th class="b right">Dezentral</th></tr></thead><tbody>`;
   wt+=`<tr><td class="label-cell">WP-Wartung + Warmwasser-System</td><td class="right">${fmtE(Math.round(wMA))}</td><td class="right">${fmtE(Math.round(wMB))}</td></tr>`;
+  wt+=`<tr><td class="sub-label" colspan="3"><strong>Zentral 700 €/a:</strong> WP ~350 € · Frischwasserstation + Zirkulation ~150 € · Sonstiges ~200 €<br><strong>Dezentral 600 €/a:</strong> WP ~400 € (2 Geräte) · 4× Stationen ~50 € (wartungsarm) · Sonstiges ~150 €</td></tr>`;
   wt+=`<tr><td class="label-cell">F-Gase Dichtheitsprüfung (jährlich, 200 €/Prüfung — gesetzl. Pflicht bei R407C)</td><td class="right worse">${fmtE(Math.round(wFGA))}</td><td class="right better">0 € (R290)</td></tr>`;
   wt+=`<tr><td class="label-cell">Legionellenprüfung (alle 3 Jahre, 450 €/Prüfung)</td><td class="right worse">${fmtE(Math.round(wLGA))}</td><td class="right better">0 € (dezentral)</td></tr>`;
   wt+=`<tr><td class="label-cell">Rückstellungen Reparaturen</td><td class="right">${fmtE(Math.round(rA))}</td><td class="right">${fmtE(Math.round(rB))}</td></tr>`;
