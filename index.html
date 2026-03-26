@@ -146,7 +146,7 @@ details[open] summary{margin-bottom:8px;}
   <!-- INVESTITION -->
   <section>
     <h2><span class="icon" style="background:rgba(160,196,168,0.15);color:var(--accent-b);">💰</span> Investition & Förderung (Schätzung)</h2>
-    <p class="section-note">Förderberechnung basiert auf KfW 458, Förderhöchstbetrag 75.000 € netto bei 4 WE. Tatsächliche Förderung kann abweichen — Energieberater konsultieren.</p>
+    <p class="section-note">Förderberechnung basiert auf KfW 458, Förderhöchstbetrag 75.000 € brutto bei 4 WE. Tatsächliche Förderung kann abweichen — Energieberater konsultieren.</p>
     <table id="investTable"></table>
   </section>
 
@@ -356,8 +356,8 @@ function update(){
 
   let wt=`<thead><tr><th>Position (${p.years} Jahre)</th><th class="a right">Zentral</th><th class="b right">Dezentral</th></tr></thead><tbody>`;
   wt+=`<tr><td class="label-cell">WP-Wartung + Warmwasser-System</td><td class="right">${fmtE(Math.round(wMA))}</td><td class="right">${fmtE(Math.round(wMB))}</td></tr>`;
-  wt+=`<tr><td class="label-cell">F-Gase Dichtheitsprüfung (gesetzl. Pflicht bei R407C)</td><td class="right worse">${fmtE(Math.round(wFGA))}</td><td class="right better">0 € (R290)</td></tr>`;
-  wt+=`<tr><td class="label-cell">Legionellenprüfung (alle 3 J.)</td><td class="right worse">${fmtE(Math.round(wLGA))}</td><td class="right better">0 € (dezentral)</td></tr>`;
+  wt+=`<tr><td class="label-cell">F-Gase Dichtheitsprüfung (jährlich, 200 €/Prüfung — gesetzl. Pflicht bei R407C)</td><td class="right worse">${fmtE(Math.round(wFGA))}</td><td class="right better">0 € (R290)</td></tr>`;
+  wt+=`<tr><td class="label-cell">Legionellenprüfung (alle 3 Jahre, 450 €/Prüfung)</td><td class="right worse">${fmtE(Math.round(wLGA))}</td><td class="right better">0 € (dezentral)</td></tr>`;
   wt+=`<tr><td class="label-cell">Rückstellungen Reparaturen</td><td class="right">${fmtE(Math.round(rA))}</td><td class="right">${fmtE(Math.round(rB))}</td></tr>`;
   wt+=`<tr><td class="sub-label" colspan="3">Rückstellungen: Erfahrungswert ~500 €/a für Verschleißteile (Ventilatoren, Pumpen, Platinenwechsel nach 8–12 J.). Enthält anteiligen Erwartungswert für unvorhergesehene Reparaturen (~25% Eintrittswahrscheinlichkeit über ${p.years} J.; bei R407C höher wegen steigender Kältemittelpreise durch EU-Phase-Down).</td></tr>`;
   wt+=`<tr class="total"><td class="label-cell">Summe</td><td class="right">${fmtE(Math.round(wTA))}</td><td class="right">${fmtE(Math.round(wTB))}</td></tr>`;
@@ -402,11 +402,11 @@ function updateMonthly(){
   const sA2=heat2/jazA*ep, sB2=heat2/jazB*ep;
 
   let mt=`<thead><tr><th></th><th class="a right">Zentral</th><th class="b right">Dezentral</th></tr></thead><tbody>`;
-  mt+=`<tr><td colspan="3" class="label-cell" style="font-weight:700;padding-top:12px;">Beispiel 1: Wohnung mit 6.000 kWh Gasverbrauch/Jahr</td></tr>`;
+  mt+=`<tr><td colspan="3" class="label-cell" style="font-weight:700;padding-top:12px;">Beispiel 1: Wohnung mit vorher 6.000 kWh Gasverbrauch/Jahr</td></tr>`;
   mt+=`<tr><td class="label-cell">Stromverbrauch/a</td><td class="right">${fmt(Math.round(heat1/jazA))} kWh</td><td class="right">${fmt(Math.round(heat1/jazB))} kWh</td></tr>`;
   mt+=`<tr><td class="label-cell">Kosten pro Monat</td><td class="right">${Math.round(sA1/12)} €</td><td class="right">${Math.round(sB1/12)} €</td></tr>`;
   mt+=`<tr class="highlight"><td class="label-cell">Kosten pro Jahr</td><td class="right">${fmtE(Math.round(sA1))}</td><td class="right">${fmtE(Math.round(sB1))}</td></tr>`;
-  mt+=`<tr><td colspan="3" class="label-cell" style="font-weight:700;padding-top:16px;">Beispiel 2: Wohnung mit 20.000 kWh Gasverbrauch/Jahr</td></tr>`;
+  mt+=`<tr><td colspan="3" class="label-cell" style="font-weight:700;padding-top:16px;">Beispiel 2: Wohnung mit vorher 20.000 kWh Gasverbrauch/Jahr</td></tr>`;
   mt+=`<tr><td class="label-cell">Stromverbrauch/a</td><td class="right">${fmt(Math.round(heat2/jazA))} kWh</td><td class="right">${fmt(Math.round(heat2/jazB))} kWh</td></tr>`;
   mt+=`<tr><td class="label-cell">Kosten pro Monat</td><td class="right">${Math.round(sA2/12)} €</td><td class="right">${Math.round(sB2/12)} €</td></tr>`;
   mt+=`<tr class="highlight"><td class="label-cell">Kosten pro Jahr</td><td class="right">${fmtE(Math.round(sA2))}</td><td class="right">${fmtE(Math.round(sB2))}</td></tr>`;
