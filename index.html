@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WP-Vergleich: CS5000AW vs CS8800i AW</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--border:#2d3148;
+  --text:#e4e6f0;--text2:#8b8fa8;
+  --accent-a:#7ea8d9;--accent-b:#a0c4a8;
+  --accent-blue:#5b9cf5;--accent-gold:#e8c547;
+  --better:#4ecb8d;--worse:#e06c5a;--neutral:#8b8fa8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px;}
+header{text-align:center;padding:40px 0 20px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+header h1{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px;}
+header .sub{color:var(--text2);font-size:0.85rem;}
+.badge{display:inline-block;background:var(--surface2);color:var(--text);border:1px solid var(--border);padding:2px 10px;border-radius:99px;font-size:0.72rem;font-weight:600;letter-spacing:0.03em;}
+section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;}
+section h2{font-size:1.05rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+section h2 .icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
+.section-note{font-size:0.75rem;color:var(--text2);margin-bottom:14px;font-style:italic;}
+.controls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:6px;}
+.control-group label{display:block;font-size:0.75rem;color:var(--text2);margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;}
+.control-group input[type="range"]{width:100%;accent-color:var(--accent-blue);margin-bottom:2px;}
+.control-group .val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600;color:var(--accent-blue);}
+.control-group .ref{font-size:0.7rem;color:var(--text2);margin-top:2px;}
+.scenario-btns{display:flex;gap:6px;margin-top:4px;}
+.scenario-btns button{font-family:'DM Sans',sans-serif;font-size:0.68rem;padding:3px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;transition:all 0.15s;}
+.scenario-btns button:hover,.scenario-btns button.active{background:var(--accent-blue);color:var(--bg);border-color:var(--accent-blue);}
+table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+th{text-align:left;padding:8px 10px;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text2);border-bottom:2px solid var(--border);}
+th.a{color:var(--accent-a);}th.b{color:var(--accent-b);}th.gas{color:var(--accent-gold);}
+th.right,td.right{text-align:right;}
+td{padding:7px 10px;border-bottom:1px solid rgba(45,49,72,0.5);font-family:'JetBrains Mono',monospace;font-size:0.78rem;}
+td.label-cell{font-family:'DM Sans',sans-serif;font-weight:500;color:var(--text);font-size:0.82rem;}
+td.sub-label{font-family:'DM Sans',sans-serif;color:var(--text2);font-size:0.72rem;font-style:italic;}
+tr:last-child td{border-bottom:none;}
+tr.highlight td{background:var(--surface2);font-weight:600;}
+tr.total td{border-top:2px solid var(--border);font-weight:700;font-size:0.85rem;padding-top:10px;}
+td.better{color:var(--better);}td.worse{color:var(--worse);}td.neut{color:var(--neutral);}
+.note{font-size:0.72rem;color:var(--text2);margin-top:10px;font-style:italic;line-height:1.4;}
+.assumptions-box{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--text2);}
+.assumptions-box strong{color:var(--accent-blue);font-family:'JetBrains Mono',monospace;}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.concept-card{border:1px solid var(--border);border-radius:10px;padding:16px;background:var(--surface2);}
+.concept-card h3{font-size:0.85rem;margin-bottom:10px;font-weight:700;color:var(--text);}
+.concept-card ul{list-style:none;font-size:0.78rem;line-height:1.7;}
+.concept-card ul li::before{content:"→ ";color:var(--text2);}
+.concept-card ul li.warn{color:var(--worse);}
+.concept-card ul li.warn::before{content:"⚠ ";}
+.concept-card ul li.con{color:var(--worse);}
+.concept-card ul li.con::before{content:"⚠ ";}
+.summary-box{background:linear-gradient(135deg,rgba(78,203,141,0.06),rgba(91,156,245,0.06));border:1px solid rgba(160,196,168,0.2);border-radius:12px;padding:20px 24px;text-align:center;margin-top:10px;}
+.summary-box .big{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--better);}
+.summary-box .caption{font-size:0.82rem;color:var(--text2);margin-top:4px;}
+details{margin-top:14px;}
+details summary{cursor:pointer;font-size:0.82rem;color:var(--accent-blue);font-weight:600;padding:8px 0;user-select:none;}
+details summary:hover{text-decoration:underline;}
+details[open] summary{margin-bottom:8px;}
+.explainer{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-size:0.82rem;line-height:1.7;color:var(--text);}
+.explainer .step{margin-bottom:12px;}
+.explainer .step-num{display:inline-block;width:24px;height:24px;border-radius:50%;background:var(--accent-blue);color:var(--bg);font-size:0.72rem;font-weight:700;text-align:center;line-height:24px;margin-right:6px;}
+.explainer .result{background:rgba(91,156,245,0.1);border:1px solid rgba(91,156,245,0.2);border-radius:8px;padding:10px 14px;margin-top:8px;}
+.explainer strong{color:var(--accent-blue);}
+.explainer .mono{font-family:'JetBrains Mono',monospace;color:var(--accent-blue);}
+.mini-calc{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px;}
+.mini-calc .controls-grid{margin-bottom:10px;}
+@media(max-width:700px){.concept-grid{grid-template-columns:1fr;}.controls-grid{grid-template-columns:1fr 1fr;}table{font-size:0.72rem;}td,th{padding:5px 6px;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Wärmepumpen-Vergleich — KE Gebäudetechnik</h1>
+    <p class="sub">Lannerstr. 10, 33647 Bielefeld · 4 Wohneinheiten</p>
+    <div style="margin-top:10px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <span class="badge">Zentral · CS5000AW · R407C</span>
+      <span class="badge">Dezentral · CS8800i AW · R290</span>
+    </div>
+  </header>
+
+  <!-- TECH -->
+  <section>
+    <h2><span class="icon" style="background:rgba(91,156,245,0.15);color:var(--accent-blue);">⚡</span> Technikvergleich</h2>
+    <p class="section-note">Herstellerdaten aus den jeweiligen Angeboten.</p>
+    <table>
+      <thead><tr><th>Eigenschaft</th><th class="a right">Zentral (CS5000AW)</th><th class="b right">Dezentral (CS8800i AW)</th></tr></thead>
+      <tbody>
+        <tr><td class="label-cell">Kältemittel</td><td class="right">R407C (GWP 1.774)</td><td class="right">R290 / Propan (GWP 3)</td></tr>
+        <tr><td class="sub-label" colspan="3">R290 ist ein natürliches Kältemittel mit sehr geringem Treibhauspotenzial. Es qualifiziert für +5% KfW-Effizienzbonus, d.h. die Fördersumme erhöht sich um 5 Prozentpunkte.</td></tr>
+        <tr><td class="label-cell">Außeneinheit(en)</td><td class="right">1 Gerät mit 2 Verdichtern (22 kW)</td><td class="right">2 Geräte à 11 kW in Kaskade (22 kW)</td></tr>
+        <tr><td class="sub-label" colspan="3">An den meisten Tagen im Jahr (Frühling, Herbst, milde Wintertage) braucht das Haus nur 5–8 kW — nicht die vollen 22 kW. Bei der Kaskade läuft dann nur 1 Gerät, leiser und im optimalen Effizienzbereich. Erst an richtig kalten Tagen schaltet sich das 2. dazu. Beim großen Einzelgerät schaltet sich zwar auch ein Verdichter ab, aber die minimale Leistungsstufe liegt trotzdem bei ~12 kW — oft mehr als das Haus gerade braucht. Das Gerät springt dann häufig an und aus ("Takten"), was weniger effizient ist und langfristig den Verschleiß erhöht. Nachteil: Die 2 Geräte (je 1,05 × 1,35 m) brauchen mehr Grundfläche und 2 Fundamente als das 1 große Gerät (1,82 × 1,07 m).</td></tr>
+        <tr><td class="label-cell">Effizienz bei Fußbodenheizung</td><td class="right">SCOP 4,00</td><td class="right better">SCOP 5,25</td></tr>
+        <tr><td class="sub-label" colspan="3">SCOP = Durchschnitts-Wirkungsgrad über eine Heizsaison. SCOP 4,0 heißt: Aus 1 kWh Strom werden 4 kWh Wärme. Höher = weniger Strom nötig.</td></tr>
+        <tr><td class="label-cell">Effizienz bei Heizkörpern</td><td class="right worse">SCOP 3,33</td><td class="right better">SCOP 4,01</td></tr>
+        <tr><td class="sub-label" colspan="3">Gemessen bei 55°C Wassertemperatur — das brauchen unsere Heizkörper. Entscheidend für unser Haus mit Mischsystem (Fußbodenheizung + Heizkörper).</td></tr>
+        <tr><td class="label-cell">Max. Vorlauftemperatur</td><td class="right worse">64°C</td><td class="right better">70°C (auch bei −10°C außen)</td></tr>
+        <tr><td class="sub-label" colspan="3">Die Vorlauftemperatur bestimmt, wie heiß das Wasser in den Heizkörpern wird. Wir brauchen aktuell 55°C. Je mehr Reserve nach oben, desto besser — denn an sehr kalten Tagen oder wenn ein Raum schlecht gedämmt ist, muss die WP kurzfristig höher fahren können, ohne auf den Heizstab zurückzugreifen (der reinen Strom verheizt).</td></tr>
+        <tr><td class="label-cell">Lautstärke bei 3 m Abstand (Volllast)</td><td class="right worse">ca. 40–43 dB(A)</td><td class="right better">ca. 28–30 dB(A)</td></tr>
+        <tr><td class="sub-label" colspan="3">Gemessen als Schalldruck in 3 m Abstand — das ist, was man tatsächlich hört. Volllast = kälteste Tage im Jahr. 40–43 dB(A) ≈ leises Gespräch in einem ruhigen Raum · 28–30 dB(A) ≈ Flüstern, kaum wahrnehmbar. Im Teillastbetrieb (Großteil des Winters) wird es nochmal deutlich leiser. Der Unterschied von ~13 dB(A) bedeutet, dass die dezentrale Lösung sich etwa 2–3× so leise anfühlt. Am Aufstellort zwischen den Hauswänden können Reflexionen den Pegel um 3–6 dB(A) erhöhen.</td></tr>
+        <tr><td class="label-cell">KfW-Effizienzbonus +5%</td><td class="right worse">Nein (R407C)</td><td class="right better">Ja (R290)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- KONZEPT -->
+  <section>
+    <h2><span class="icon" style="background:rgba(232,197,71,0.15);color:var(--accent-gold);">🏠</span> Warmwasser- & Systemkonzept</h2>
+    <p class="section-note">Grundsätzlich verschiedene Ansätze zur Warmwasserbereitung im Mehrfamilienhaus. Beide haben Vor- und Nachteile.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h3>Zentral (CS5000AW)</h3>
+        <ul>
+          <li>Zentrale Frischwasserstation FlowFresh FF 27S im Keller</li>
+          <li>200 L Heizungspuffer + 500 L Warmwasserspeicher (STORA BH 500)</li>
+          <li>Geringere Anschaffungskosten (1 Station statt 4)</li>
+          <li>Kein Platzbedarf in den Wohnungen</li>
+          <li>Bewährtes Systemkonzept mit langer Markterfahrung</li>
+          <li class="con">Zirkulationsleitung nötig — ca. 375–625 €/Jahr Stromkosten durch Wärmeverluste</li>
+          <li class="con">Legionellenprüfung alle 3 Jahre Pflicht (~450 €)</li>
+          <li class="con">Thermische Desinfektion nötig: WP auf >60°C → ca. 200–400 €/Jahr Mehrkosten</li>
+        </ul>
+      </div>
+      <div class="concept-card">
+        <h3>Dezentral (CS8800i AW)</h3>
+        <ul>
+          <li>4× Bosch-Wohnungsstationen F8001 in jeder Wohnung</li>
+          <li>1.000 L Pufferspeicher (reines Heizungsnetz, kein Trinkwasser)</li>
+          <li>Keine Zirkulation nötig (Durchflussprinzip) → keine Wärmeverluste</li>
+          <li>Keine Legionellenprüfung (dezentrale Erzeugung)</li>
+          <li>Niedrigere Netztemperatur möglich → WP arbeitet effizienter</li>
+          <li class="con">Höhere Anschaffungskosten: 4 Stationen statt 1 zentrale Einheit</li>
+          <li class="con">Platzbedarf in jeder Wohnung: Station an der Wand (ca. 70×44×27 cm)</li>
+          <li class="con">Mehr Komponenten im System → potenziell mehr Wartungspunkte</li>
+          <li class="con">Bosch F8001 ist relativ neues Produkt — weniger Langzeiterfahrung</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTITION -->
+  <section>
+    <h2><span class="icon" style="background:rgba(160,196,168,0.15);color:var(--accent-b);">💰</span> Investition & Förderung (Schätzung)</h2>
+    <p class="section-note">Förderberechnung basiert auf KfW 458, Förderhöchstbetrag 75.000 € netto bei 4 WE. Tatsächliche Förderung kann abweichen — Energieberater konsultieren.</p>
+    <table id="investTable"></table>
+  </section>
+
+  <!-- CONTROLS -->
+  <section>
+    <h2><span class="icon" style="background:rgba(91,156,245,0.15);color:var(--accent-blue);">⚙</span> Parameter anpassen</h2>
+    <p class="section-note">Verschiebe die Regler — alle Tabellen unten passen sich sofort an.</p>
+    <div class="controls-grid">
+      <div class="control-group">
+        <label>Wärmebedarf gesamt (kWh/a)</label>
+        <input type="range" id="heat" min="30000" max="80000" step="1000" value="48000">
+        <span class="val" id="heatVal">48.000</span> kWh/a
+        <div class="ref">Berechnet aus dem tatsächlichen Gasverbrauch aller 4 WE (56.200 kWh/a gesamt) abzüglich Kesselverluste (~85% Nutzungsgrad, da Thermen 10–30 Jahre alt). Gasverbräuche: WE 1: 19.300 kWh · WE 2: 5.700 kWh · WE 3: 23.400 kWh · WE 4: 7.800 kWh.</div>
+      </div>
+      <div class="control-group">
+        <label>WP-Strompreis Start (€/kWh)</label>
+        <input type="range" id="elPrice" min="0.18" max="0.40" step="0.01" value="0.25">
+        <span class="val" id="elPriceVal">0,25</span> €/kWh
+        <div class="ref">WP-Sondertarif: 0,22–0,26 €. Normaltarif: 0,30–0,34 €.</div>
+      </div>
+      <div class="control-group">
+        <label>Strompreis-Steigerung (%/a)</label>
+        <input type="range" id="elRise" min="0" max="6" step="0.5" value="2">
+        <span class="val" id="elRiseVal">2,0</span> %
+        <div class="ref">Historisch: 2,7–6,1%/a. Vorsichtig: 2%. Realistisch: 3%.</div>
+      </div>
+      <div class="control-group">
+        <label>Betrachtungszeitraum (Jahre)</label>
+        <input type="range" id="years" min="5" max="25" step="1" value="15">
+        <span class="val" id="yearsVal">15</span> Jahre
+        <div class="ref">Typische WP-Lebensdauer: 15–20 Jahre.</div>
+      </div>
+      <div class="control-group" style="grid-column:1/-1;">
+        <label>Effizienz-Szenario (Jahresarbeitszahl)</label>
+        <div style="font-size:0.8rem;color:var(--text);margin-bottom:10px;line-height:1.6;">
+          Die <strong>Jahresarbeitszahl (JAZ)</strong> gibt an, wie viel Wärme die Wärmepumpe im Durchschnitt aus einer Kilowattstunde Strom macht. Eine JAZ von 3,0 bedeutet: Für 3 kWh Wärme braucht sie 1 kWh Strom. Je höher die JAZ, desto weniger Strom wird verbraucht und desto günstiger wird es. Die JAZ hängt davon ab, wie kalt es draußen ist, wie heiß das Wasser für die Heizkörper sein muss und wie gut die Anlage eingestellt ist.
+        </div>
+        <div class="scenario-btns" style="gap:10px;flex-wrap:wrap;">
+          <button onclick="setScenario('pessimistisch')" id="btnPess" style="padding:8px 16px;font-size:0.78rem;">❄️ Pessimistisch</button>
+          <button onclick="setScenario('realistisch')" id="btnReal" class="active" style="padding:8px 16px;font-size:0.78rem;">⚖ Realistisch</button>
+          <button onclick="setScenario('optimistisch')" id="btnOpt" style="padding:8px 16px;font-size:0.78rem;">☀ Optimistisch</button>
+        </div>
+        <div style="font-size:0.72rem;color:var(--text2);margin-top:8px;line-height:1.5;" id="scenarioDesc">
+        </div>
+        <input type="hidden" id="jazA" value="2.9">
+        <input type="hidden" id="jazB" value="3.7">
+      </div>
+    </div>
+  </section>
+
+  <!-- STROMKOSTEN -->
+  <section>
+    <h2><span class="icon" style="background:rgba(224,108,90,0.15);color:var(--worse);">📊</span> Kumulierte Energiekosten</h2>
+    <p class="section-note">⬆ Abhängig von den Einstellungen oben. Verschiebe die Regler, um verschiedene Szenarien durchzuspielen.</p>
+    <div class="assumptions-box" id="assumptionsBox"></div>
+    <table id="stromTable"></table>
+    <p class="note" id="stromNote"></p>
+    <details>
+      <summary>📖 Wie kommen diese Zahlen zustande? (Berechnung in einfacher Sprache)</summary>
+      <div class="explainer" id="explainerContent"></div>
+    </details>
+  </section>
+
+  <!-- MONATLICHE KOSTEN PRO WE -->
+  <section>
+    <h2><span class="icon" style="background:rgba(232,197,71,0.15);color:var(--accent-gold);">🏡</span> Was kostet mich das pro Monat?</h2>
+    <p class="section-note">Zwei Beispiele aus unserem Haus — basierend auf dem bisherigen Gasverbrauch. Annahme: WP-Strompreis 0,25 €/kWh, Effizienz-Szenario aus den Einstellungen oben.</p>
+    <table id="monthlyTable"></table>
+    <p class="note">Nur laufende Energiekosten — ohne Investition, Förderung oder Wartung. Wärmebedarf berechnet aus Gasverbrauch × 85% Nutzungsgrad (Kesselverluste).</p>
+  </section>
+
+  <!-- WARTUNG -->
+  <section>
+    <h2><span class="icon" style="background:rgba(232,197,71,0.15);color:var(--accent-gold);">🔧</span> Wartung & Rückstellungen</h2>
+    <p class="section-note">⬆ Laufzeit abhängig von den Einstellungen oben. Wartungskosten sind Schätzungen auf Basis marktüblicher Preise.</p>
+    <table id="wartTable"></table>
+  </section>
+
+  <!-- GESAMT -->
+  <section>
+    <h2><span class="icon" style="background:rgba(91,156,245,0.15);color:var(--accent-blue);">📋</span> Gesamtkosten</h2>
+    <p class="section-note">⬆ Abhängig von den Einstellungen oben. Summe aus Eigenanteil, Energiekosten und Wartung.</p>
+    <table id="totalTable"></table>
+    <div class="summary-box" id="summaryBox"></div>
+  </section>
+</div>
+
+<script>
+const fmt=n=>n.toLocaleString('de-DE',{maximumFractionDigits:0});
+const fmtE=n=>fmt(n)+' €';
+const fmtD=(n,d=2)=>n.toFixed(d).replace('.',',');
+const $=id=>document.getElementById(id);
+
+['heat','elPrice','elRise','years'].forEach(id=>{$(id).addEventListener('input',update);});
+
+const scenarios = {
+  pessimistisch: { jazA:2.5, jazB:3.2, desc:'Strenger Winter mit vielen Tagen unter −5°C, hohe Vorlauftemperaturen (60°C+), häufiger Heizstab-Einsatz. Die Wärmepumpen arbeiten am unteren Ende ihrer Leistungsfähigkeit.' },
+  realistisch: { jazA:2.9, jazB:3.7, desc:'Normaler Winter wie in den letzten Jahren in Bielefeld, Vorlauftemperatur bei 55°C, hydraulischer Abgleich durchgeführt. Die Wärmepumpen arbeiten im erwartbaren Durchschnitt.' },
+  optimistisch: { jazA:3.3, jazB:4.1, desc:'Milder Winter, Vorlauftemperatur auf 50°C abgesenkt (nach Heizkörper-Optimierung), WP-Stromtarif genutzt. Die Anlagen arbeiten nah an ihrer optimalen Effizienz.' }
+};
+
+function setScenario(name){
+  const s=scenarios[name];
+  $('jazA').value=s.jazA;
+  $('jazB').value=s.jazB;
+  ['btnPess','btnReal','btnOpt'].forEach(id=>$(id).classList.remove('active'));
+  if(name==='pessimistisch') $('btnPess').classList.add('active');
+  if(name==='realistisch') $('btnReal').classList.add('active');
+  if(name==='optimistisch') $('btnOpt').classList.add('active');
+  $('scenarioDesc').innerHTML = `<em>${name.charAt(0).toUpperCase()+name.slice(1)}:</em> ${s.desc}`;
+  update();
+  updateMonthly();
+}
+
+function getP(){
+  return{
+    heat:+$('heat').value,elPrice:+$('elPrice').value,elRise:+$('elRise').value/100,
+    jazA:+$('jazA').value,jazB:+$('jazB').value,years:+$('years').value
+  };
+}
+
+function update(){
+  const p=getP();
+  $('heatVal').textContent=fmt(p.heat);
+  $('elPriceVal').textContent=fmtD(p.elPrice);
+  $('elRiseVal').textContent=fmtD(p.elRise*100,1);
+  $('yearsVal').textContent=p.years;
+
+  const stromA=p.heat/p.jazA, stromB=p.heat/p.jazB;
+  const bruttoAOffer=59878, abgleichA=1800, bruttoA=bruttoAOffer+abgleichA, bruttoB=74906;
+  const foerdMax=75000;
+  const nettoA=Math.min(bruttoA/1.19,foerdMax), nettoB=Math.min(bruttoB/1.19,foerdMax);
+  const fSelfA=Math.min(nettoA/4,foerdMax/4)*0.50, fRentA=Math.min(nettoA/4,foerdMax/4)*0.30;
+  const fSelfB=Math.min(nettoB/4,foerdMax/4)*0.55, fRentB=Math.min(nettoB/4,foerdMax/4)*0.35;
+  const fTotA=2*fSelfA+2*fRentA, fTotB=2*fSelfB+2*fRentB;
+  const eigenA=bruttoA-fTotA, eigenB=bruttoB-fTotB, eigenDiff=eigenB-eigenA;
+
+  // INVEST
+  let inv=`<thead><tr><th></th><th class="a right">Zentral (CS5000AW)</th><th class="b right">Dezentral (CS8800i AW)</th></tr></thead><tbody>`;
+  inv+=`<tr><td class="label-cell">Brutto lt. Angebot</td><td class="right">${fmtE(bruttoAOffer)}</td><td class="right">${fmtE(bruttoB)}</td></tr>`;
+  inv+=`<tr><td class="label-cell">+ Hydr. Abgleich + Thermostatventile (Schätzung)</td><td class="right worse">+${fmtE(abgleichA)} (fehlt im Angebot)</td><td class="right better">0 € (enthalten)</td></tr>`;
+  inv+=`<tr><td class="label-cell">Brutto geschätzt gesamt</td><td class="right">${fmtE(bruttoA)}</td><td class="right">${fmtE(bruttoB)}</td></tr>`;
+  inv+=`<tr class="highlight"><td class="label-cell">Förderung je Selbstnutzer-WE (×2)</td><td class="right">−${fmtE(Math.round(fSelfA))} (50%)</td><td class="right">−${fmtE(Math.round(fSelfB))} (55%)</td></tr>`;
+  inv+=`<tr class="highlight"><td class="label-cell">Förderung je Vermieter-WE (×2)</td><td class="right">−${fmtE(Math.round(fRentA))} (30%)</td><td class="right">−${fmtE(Math.round(fRentB))} (35%)</td></tr>`;
+  inv+=`<tr><td class="label-cell">Förderung gesamt (Schätzung)</td><td class="right">−${fmtE(Math.round(fTotA))}</td><td class="right">−${fmtE(Math.round(fTotB))}</td></tr>`;
+  inv+=`<tr class="total"><td class="label-cell">Eigenanteil WEG (Schätzung)</td><td class="right">${fmtE(Math.round(eigenA))}</td><td class="right">${fmtE(Math.round(eigenB))}</td></tr>`;
+  inv+=`<tr><td class="label-cell">→ je Selbstnutzer-WE</td><td class="right">${fmtE(Math.round(bruttoA/4-fSelfA))}</td><td class="right">${fmtE(Math.round(bruttoB/4-fSelfB))}</td></tr>`;
+  inv+=`<tr><td class="label-cell">→ je Vermieter-WE</td><td class="right">${fmtE(Math.round(bruttoA/4-fRentA))}</td><td class="right">${fmtE(Math.round(bruttoB/4-fRentB))}</td></tr>`;
+  inv+=`</tbody>`;
+  $('investTable').innerHTML=inv;
+
+  // ASSUMPTIONS
+  const scenName = $('btnPess').classList.contains('active')?'Pessimistisch':$('btnOpt').classList.contains('active')?'Optimistisch':'Realistisch';
+  $('assumptionsBox').innerHTML=`Einstellungen: Wärmebedarf <strong>${fmt(p.heat)} kWh/a</strong> · Strompreis <strong>${fmtD(p.elPrice)} €/kWh</strong> (+${fmtD(p.elRise*100,1)}%/a) · Effizienz-Szenario: <strong>${scenName}</strong> (JAZ ${fmtD(p.jazA,1)} / ${fmtD(p.jazB,1)}) · Laufzeit <strong>${p.years} Jahre</strong>`;
+
+  // STROM TABLE
+  const ms=new Set();
+  for(let y=1;y<=Math.min(3,p.years);y++) ms.add(y);
+  [5,7,10,12,15,20,25].forEach(y=>{if(y<=p.years) ms.add(y);});
+  if(p.years%5!==0) ms.add(p.years);
+  const mArr=[...ms].sort((a,b)=>a-b);
+  let cumA=0,cumB=0;
+  const rows=[];
+  for(let y=1;y<=p.years;y++){
+    const ep=p.elPrice*Math.pow(1+p.elRise,y-1);
+    cumA+=stromA*ep;cumB+=stromB*ep;
+    if(mArr.includes(y)) rows.push({y,ep,cumA,cumB});
+  }
+
+  let st=`<thead><tr><th>Jahr</th><th class="right">Strom €/kWh</th><th class="a right">Zentral kum.</th><th class="b right">Dezentral kum.</th><th class="right">Ersparnis Dezentr.</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    const hl=r.y===p.years?' class="total"':'';
+    st+=`<tr${hl}><td class="label-cell">${r.y}</td><td class="right">${r.ep.toFixed(3).replace('.',',')} €</td><td class="right">${fmtE(Math.round(r.cumA))}</td><td class="right">${fmtE(Math.round(r.cumB))}</td><td class="right better">+${fmtE(Math.round(r.cumA-r.cumB))}</td></tr>`;
+  });
+  st+=`</tbody>`;
+  $('stromTable').innerHTML=st;
+
+  const lastR=rows[rows.length-1];
+  $('stromNote').textContent=`JAZ Zentral: ${fmtD(p.jazA,1)} · JAZ Dezentral: ${fmtD(p.jazB,1)}.`;
+
+  // EXPLAINER
+  const costY1A=Math.round(stromA*p.elPrice);
+  const costY1B=Math.round(stromB*p.elPrice);
+  $('explainerContent').innerHTML=`
+    <div class="step"><span class="step-num">1</span> <strong>Wie viel Wärme braucht das Haus?</strong><br>
+    Unser Haus verbraucht ca. <span class="mono">${fmt(p.heat)} kWh</span> Wärme pro Jahr. Das ist der Wärmebedarf — egal ob Gas oder Wärmepumpe, das Haus braucht immer diese Menge Wärme.</div>
+    <div class="step"><span class="step-num">2</span> <strong>Wie viel Strom braucht die Wärmepumpe dafür?</strong><br>
+    Eine Wärmepumpe macht aus wenig Strom viel Wärme. Wie gut sie das kann, drückt die <em>Jahresarbeitszahl</em> (JAZ) aus.<br><br>
+    <strong>Zentral:</strong> JAZ ${fmtD(p.jazA,1)} → <span class="mono">${fmt(p.heat)} ÷ ${fmtD(p.jazA,1)} = ${fmt(Math.round(stromA))} kWh Strom</span> pro Jahr.<br>
+    <strong>Dezentral:</strong> JAZ ${fmtD(p.jazB,1)} → <span class="mono">${fmt(p.heat)} ÷ ${fmtD(p.jazB,1)} = ${fmt(Math.round(stromB))} kWh Strom</span> pro Jahr.<br><br>
+    Dezentral braucht <span class="mono">${fmt(Math.round(stromA-stromB))} kWh weniger Strom</span> pro Jahr.</div>
+    <div class="step"><span class="step-num">3</span> <strong>Was kostet das an Strom?</strong><br>
+    Bei ${fmtD(p.elPrice)} €/kWh:<br>
+    Zentral: <span class="mono">${fmt(Math.round(stromA))} × ${fmtD(p.elPrice)} € = ${fmtE(costY1A)}/Jahr</span><br>
+    Dezentral: <span class="mono">${fmt(Math.round(stromB))} × ${fmtD(p.elPrice)} € = ${fmtE(costY1B)}/Jahr</span><br>
+    Ersparnis Jahr 1: <span class="mono">${fmtE(costY1A-costY1B)}</span></div>
+    <div class="step"><span class="step-num">4</span> <strong>Über die Jahre?</strong><br>
+    Strom wird jährlich ca. ${fmtD(p.elRise*100,1)}% teurer. Über ${p.years} Jahre summiert sich die Ersparnis von Dezentral gegenüber Zentral auf ca. <span class="mono">${fmtE(Math.round(lastR.cumA-lastR.cumB))}</span>.</div>
+    <div class="result"><strong>Kurz:</strong> Dezentral braucht ${fmt(Math.round(stromA-stromB))} kWh/a weniger Strom als Zentral, weil der Kältekreis effizienter ist. Das spart über ${p.years} Jahre ca. ${fmtE(Math.round(lastR.cumA-lastR.cumB))}.</div>`;
+
+  // WARTUNG
+  const wMA=p.years*700, wMB=p.years*750;
+  const wFGA=p.years*200, wLGA=Math.floor(p.years/3)*450;
+  const rA=p.years*500+0.25*800, rB=p.years*550+0.25*50;
+  const wTA=wMA+wFGA+wLGA+rA, wTB=wMB+rB;
+  const wD=wTB-wTA;
+
+  let wt=`<thead><tr><th>Position (${p.years} Jahre)</th><th class="a right">Zentral</th><th class="b right">Dezentral</th></tr></thead><tbody>`;
+  wt+=`<tr><td class="label-cell">WP-Wartung + Warmwasser-System</td><td class="right">${fmtE(Math.round(wMA))}</td><td class="right">${fmtE(Math.round(wMB))}</td></tr>`;
+  wt+=`<tr><td class="label-cell">F-Gase Dichtheitsprüfung (gesetzl. Pflicht bei R407C)</td><td class="right worse">${fmtE(Math.round(wFGA))}</td><td class="right better">0 € (R290)</td></tr>`;
+  wt+=`<tr><td class="label-cell">Legionellenprüfung (alle 3 J.)</td><td class="right worse">${fmtE(Math.round(wLGA))}</td><td class="right better">0 € (dezentral)</td></tr>`;
+  wt+=`<tr><td class="label-cell">Rückstellungen Reparaturen</td><td class="right">${fmtE(Math.round(rA))}</td><td class="right">${fmtE(Math.round(rB))}</td></tr>`;
+  wt+=`<tr><td class="sub-label" colspan="3">Rückstellungen: Erfahrungswert ~500 €/a für Verschleißteile (Ventilatoren, Pumpen, Platinenwechsel nach 8–12 J.). Enthält anteiligen Erwartungswert für unvorhergesehene Reparaturen (~25% Eintrittswahrscheinlichkeit über ${p.years} J.; bei R407C höher wegen steigender Kältemittelpreise durch EU-Phase-Down).</td></tr>`;
+  wt+=`<tr class="total"><td class="label-cell">Summe</td><td class="right">${fmtE(Math.round(wTA))}</td><td class="right">${fmtE(Math.round(wTB))}</td></tr>`;
+  wt+=`<tr class="highlight"><td class="label-cell">Differenz</td><td class="right neut">Referenz</td><td class="right ${wD<0?'better':'worse'}">${wD<0?'':'+'} ${fmtE(Math.round(wD))}</td></tr>`;
+  wt+=`</tbody>`;
+  $('wartTable').innerHTML=wt;
+
+  // TOTAL
+  const totA=eigenA+lastR.cumA+wTA, totB=eigenB+lastR.cumB+wTB;
+  const saved=totA-totB;
+
+  let tt=`<thead><tr><th>Kostenblock</th><th class="a right">Zentral</th><th class="b right">Dezentral</th><th class="right">Differenz</th></tr></thead><tbody>`;
+  tt+=`<tr><td class="label-cell">Eigenanteil (Schätzung)</td><td class="right">${fmtE(Math.round(eigenA))}</td><td class="right">${fmtE(Math.round(eigenB))}</td><td class="right">${eigenDiff>0?'+':''}${fmtE(Math.round(eigenDiff))}</td></tr>`;
+  tt+=`<tr><td class="label-cell">Energiekosten ${p.years} J.</td><td class="right">${fmtE(Math.round(lastR.cumA))}</td><td class="right">${fmtE(Math.round(lastR.cumB))}</td><td class="right better">−${fmtE(Math.round(lastR.cumA-lastR.cumB))}</td></tr>`;
+  tt+=`<tr><td class="label-cell">Wartung + Rückstellungen</td><td class="right">${fmtE(Math.round(wTA))}</td><td class="right">${fmtE(Math.round(wTB))}</td><td class="right ${wD<0?'better':'worse'}">${wD<0?'−':'+'}${fmtE(Math.abs(Math.round(wD)))}</td></tr>`;
+  tt+=`<tr class="total"><td class="label-cell">GESAMTKOSTEN ${p.years} Jahre</td><td class="right">${fmtE(Math.round(totA))}</td><td class="right">${fmtE(Math.round(totB))}</td><td class="right ${saved>0?'better':'worse'}">${saved>0?'−':'+'}${fmtE(Math.abs(Math.round(saved)))}</td></tr>`;
+  tt+=`</tbody>`;
+  $('totalTable').innerHTML=tt;
+
+  // SUMMARY
+  const annS=(lastR.cumA-lastR.cumB+(wTA-wTB))/p.years;
+  const brkYears=eigenDiff>0&&annS>0?(eigenDiff/annS):0;
+  const brkDisplay=brkYears>0?(brkYears<1?'unter 1 Jahr':fmtD(brkYears,1)+' Jahre'):'sofort';
+  $('summaryBox').innerHTML=`
+    <div class="big">${saved>0?'−':'+'}${fmtE(Math.abs(Math.round(saved)))}</div>
+    <div class="caption">${saved>0?'Ersparnis':'Mehrkosten'} dezentrales System über ${p.years} Jahre</div>
+    <div style="margin-top:10px;font-size:0.82rem;color:var(--text2);">
+      ${brkYears>0?`Mehrinvestition amortisiert nach ca. <strong style="color:var(--better);">${brkDisplay}</strong> · `:''}
+      Pro WE: <strong style="color:var(--better);">${fmtE(Math.round(saved/4))}</strong> ${saved>0?'gespart':''} ·
+      ${Math.round(Math.abs(saved)/4/(p.years*12))} €/Monat ${saved>0?'weniger':'mehr'} je WE
+    </div>`;
+}
+
+function updateMonthly(){
+  const jazA=+$('jazA').value, jazB=+$('jazB').value;
+  const ep=0.25; // Annahme WP-Stromtarif
+  // Beispiel 1: Wohnung mit 6.000 kWh Gasverbrauch/a
+  const gas1=6000, heat1=gas1*0.85;
+  const sA1=heat1/jazA*ep, sB1=heat1/jazB*ep;
+  // Beispiel 2: Wohnung mit 20.000 kWh Gasverbrauch/a
+  const gas2=20000, heat2=gas2*0.85;
+  const sA2=heat2/jazA*ep, sB2=heat2/jazB*ep;
+
+  let mt=`<thead><tr><th></th><th class="a right">Zentral</th><th class="b right">Dezentral</th></tr></thead><tbody>`;
+  mt+=`<tr><td colspan="3" class="label-cell" style="font-weight:700;padding-top:12px;">Beispiel 1: Wohnung mit 6.000 kWh Gasverbrauch/Jahr</td></tr>`;
+  mt+=`<tr><td class="label-cell">Stromverbrauch/a</td><td class="right">${fmt(Math.round(heat1/jazA))} kWh</td><td class="right">${fmt(Math.round(heat1/jazB))} kWh</td></tr>`;
+  mt+=`<tr><td class="label-cell">Kosten pro Monat</td><td class="right">${Math.round(sA1/12)} €</td><td class="right">${Math.round(sB1/12)} €</td></tr>`;
+  mt+=`<tr class="highlight"><td class="label-cell">Kosten pro Jahr</td><td class="right">${fmtE(Math.round(sA1))}</td><td class="right">${fmtE(Math.round(sB1))}</td></tr>`;
+  mt+=`<tr><td colspan="3" class="label-cell" style="font-weight:700;padding-top:16px;">Beispiel 2: Wohnung mit 20.000 kWh Gasverbrauch/Jahr</td></tr>`;
+  mt+=`<tr><td class="label-cell">Stromverbrauch/a</td><td class="right">${fmt(Math.round(heat2/jazA))} kWh</td><td class="right">${fmt(Math.round(heat2/jazB))} kWh</td></tr>`;
+  mt+=`<tr><td class="label-cell">Kosten pro Monat</td><td class="right">${Math.round(sA2/12)} €</td><td class="right">${Math.round(sB2/12)} €</td></tr>`;
+  mt+=`<tr class="highlight"><td class="label-cell">Kosten pro Jahr</td><td class="right">${fmtE(Math.round(sA2))}</td><td class="right">${fmtE(Math.round(sB2))}</td></tr>`;
+  mt+=`</tbody>`;
+  $('monthlyTable').innerHTML=mt;
+}
+
+setScenario('realistisch');
+updateMonthly();
+</script>
+</body>
+</html>
